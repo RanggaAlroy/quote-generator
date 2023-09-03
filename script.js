@@ -9,21 +9,20 @@ const loader = document.getElementById("loader");
 // GET Quote grom API
 let apiQuotes = [];
 
-// Show Loading
-function loading() {
+function showLoadingAnimation() {
   loader.hidden = false;
   quoteContainer.hidden = true;
 }
 
 // Hide loading
-function complete() {
+function hideLoadingAnimation() {
   loader.hidden = true;
   quoteContainer.hidden = false;
 }
 
 // Show new quote
 function newQuote() {
-  loading();
+  showLoadingAnimation();
   // pick rundom Quote from API quote array
   const quote = apiQuotes[Math.trunc(Math.random() * apiQuotes.length)];
   // check quote text length to determine styling
@@ -40,11 +39,11 @@ function newQuote() {
     authorText.textContent = quote.author;
   }
   // Set quote, complete function
-  complete();
+  hideLoadingAnimation();
 }
 
 async function getQuotes() {
-  loading();
+  showLoadingAnimation();
   const apiURL = "https://jacintodesign.github.io/quotes-api/data/quotes.json";
 
   try {
